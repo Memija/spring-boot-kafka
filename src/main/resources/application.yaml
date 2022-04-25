@@ -1,0 +1,30 @@
+spring:
+    kafka:
+        bootstrap_servers: kafka:9092
+        consumer:
+            key_deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value_deserializer: org.apache.kafka.common.serialization.KafkaAvroDeserializer
+            group_id: my-group
+            enable_auto_commit: false
+            isolation_level: READ_COMMITTED
+        properties:
+            schema:
+                registry:
+                    url: http://schema-registry:8081
+                    ssl:
+                        truststore:
+                            location: /path/to/truststore.jks
+                            password: password
+            auto:
+                register:
+                    schemas: false
+            use:
+                latest:
+                    version: true
+        ssl:
+            key-store-location: /path/to/keystore.jks
+            key-store-password: password
+            trust-store-location: /path/to/truststore.jks
+            trust-store-password: password
+        security:
+            protocol: SSL

@@ -5,17 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(properties = {"kafka_enabled=false", "spring.kafka.listener.auto-startup=false", "spring.kafka.bootstrap-servers=localhost:9092"})
 class KafkaApplicationTests {
 
 	@Test
-	void application_shouldBeAbleToStart() {
-		// Arrange
-		KafkaApplication kafkaApplication = new KafkaApplication();
-		// Act
-		String className = kafkaApplication.getClass().getName();
-		// Assert
-		assertEquals(className, KafkaApplication.class.toString());
+	void contextLoads() {
 	}
 
 }

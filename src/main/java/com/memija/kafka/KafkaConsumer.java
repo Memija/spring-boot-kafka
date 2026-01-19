@@ -17,7 +17,7 @@ public class KafkaConsumer {
     }
 
     private void logIncomingMessage(ConsumerRecord<String, Object> record) {
-        record.headers().forEach(header -> logger.info("Header {} has value of {}.", header.key(), header.value()));
+        record.headers().forEach(header -> logger.info("Header {} has value of {}.", header.key(), new String(header.value(), java.nio.charset.StandardCharsets.UTF_8)));
         logger.info("Record under key {} has value of {}.", record.key(), record.value());
     }
 

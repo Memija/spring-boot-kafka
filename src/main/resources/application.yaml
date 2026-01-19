@@ -1,6 +1,6 @@
 spring:
     kafka:
-        bootstrap_servers: kafka:9092
+        bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
         consumer:
             key_deserializer: org.apache.kafka.common.serialization.StringDeserializer
             value_deserializer: org.apache.kafka.common.serialization.StringDeserializer

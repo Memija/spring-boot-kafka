@@ -12,13 +12,13 @@ public class KafkaConsumer {
     private final Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
     @KafkaListener(topics = "${kafka_topic}" , groupId = "${kafka_group_id}")
-    public void consume(ConsumerRecord<String, Object> record) {
-        logIncomingMessage(record);
+    public void consume(ConsumerRecord<String, Object> consumerRecord) {
+        logIncomingMessage(consumerRecord);
     }
 
-    private void logIncomingMessage(ConsumerRecord<String, Object> record) {
-        record.headers().forEach(header -> logger.info("Header {} has value of {}.", header.key(), new String(header.value(), java.nio.charset.StandardCharsets.UTF_8)));
-        logger.info("Record under key {} has value of {}.", record.key(), record.value());
+    private void logIncomingMessage(ConsumerRecord<String, Object> consumerRecord) {
+        consumerRecord.headers().forEach(header -> logger.info("Header {} has value of {}.", header.key(), new String(header.value(), java.nio.charset.StandardCharsets.UTF_8)));
+        logger.info("Record under key {} has value of {}.", consumerRecord.key(), consumerRecord.value());
     }
 
 }

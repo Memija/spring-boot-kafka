@@ -9,10 +9,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
@@ -42,7 +39,7 @@ class KafkaIntegrationTest {
 
         verify(kafkaConsumer, timeout(10000).times(1)).consume(captor.capture());
 
-        ConsumerRecord<String, Object> record = captor.getValue();
-        assertEquals(message, record.value());
+        ConsumerRecord<String, Object> consumerRecord = captor.getValue();
+        assertEquals(message, consumerRecord.value());
     }
 }
